@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern black, orange, and white interactive calculator with real-time evaluation, keyboard support, and history.">
+  <title>Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="ambient-background">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <div class="app-container">
+    <main class="calculator-card" role="region" aria-label="Calculator Interface">
+      
+      <header class="calc-header">
+        <div class="brand">
+          <i data-lucide="calculator" class="brand-icon"></i>
+          <span class="brand-name">Calc</span>
+        </div>
+        
+        <div class="header-controls">
+          <button id="soundToggleBtn" class="icon-btn" title="Toggle Sound Feedback" aria-label="Toggle Sound">
+            <i data-lucide="volume-2" id="soundIcon"></i>
+          </button>
+          
+          <button id="historyToggleBtn" class="icon-btn" title="Toggle History Panel" aria-label="Toggle History">
+            <i data-lucide="history"></i>
+          </button>
+        </div>
+      </header>
+
+      <section class="display-container" aria-live="polite">
+        <div class="expression-line" id="expressionDisplay"></div>
+        <div class="main-display" id="mainDisplay">0</div>
+        <div class="preview-line" id="previewDisplay"></div>
+      </section>
+
+      <div class="memory-bar">
+        <button class="mem-btn" data-action="mc" title="Memory Clear">MC</button>
+        <button class="mem-btn" data-action="mr" title="Memory Recall">MR</button>
+        <button class="mem-btn" data-action="m-plus" title="Memory Add">M+</button>
+        <button class="mem-btn" data-action="m-minus" title="Memory Subtract">M-</button>
+        <span class="mem-indicator" id="memoryIndicator" style="display: none;">MEM</span>
+      </div>
+
+      <section class="keypad-grid" role="grid" aria-label="Calculator Keypad">
+        <button class="key action-key clear-key" data-key="Escape" data-action="clear-all" title="Clear All">AC</button>
+        <button class="key action-key" data-key="Backspace" data-action="delete" title="Backspace">
+          <i data-lucide="delete"></i>
+        </button>
+
+        <button class="key function-key" data-key="%" data-action="percent" title="Percentage">%</button>
+        <button class="key operator-key" data-key="/" data-action="operator" data-value="/" title="Divide">÷</button>
+
+        <button class="key function-key" data-key="s" data-action="sqrt" title="Square Root">√</button>
+        <button class="key function-key" data-key="^" data-action="power" title="Exponent">xʸ</button>
+        <button class="key function-key" data-key="n" data-action="negate" title="Toggle Positive/Negative">±</button>
+        <button class="key operator-key" data-key="*" data-action="operator" data-value="*" title="Multiply">×</button>
+
+        <button class="key num-key" data-key="7" data-value="7">7</button>
+        <button class="key num-key" data-key="8" data-value="8">8</button>
+        <button class="key num-key" data-key="9" data-value="9">9</button>
+        <button class="key operator-key" data-key="-" data-action="operator" data-value="-" title="Subtract">−</button>
+
+        <button class="key num-key" data-key="4" data-value="4">4</button>
+        <button class="key num-key" data-key="5" data-value="5">5</button>
+        <button class="key num-key" data-key="6" data-value="6">6</button>
+        <button class="key operator-key" data-key="+" data-action="operator" data-value="+" title="Add">+</button>
+
+        <button class="key num-key" data-key="1" data-value="1">1</button>
+        <button class="key num-key" data-key="2" data-value="2">2</button>
+        <button class="key num-key" data-key="3" data-value="3">3</button>
+
+        <button class="key equals-key" data-key="Enter" data-action="equals" title="Calculate">=</button>
+
+        <button class="key num-key zero-key" data-key="0" data-value="0">0</button>
+        <button class="key num-key" data-key="." data-value="." title="Decimal point">.</button>
+        <button class="key function-key" data-key="(" data-action="paren" data-value="(" title="Left parenthesis">(</button>
+      </section>
+
+      <footer class="calc-footer">
+        <span class="keyboard-tip">
+          <i data-lucide="keyboard" class="tip-icon"></i> Full Keyboard Enabled (0-9, +, -, *, /, Enter, Esc, Del)
+        </span>
+      </footer>
+    </main>
+
+    <aside class="history-panel" id="historyPanel" aria-label="Calculation History">
+      <div class="history-header">
+        <h3><i data-lucide="clock"></i> History</h3>
+        <div class="history-actions">
+          <button id="clearHistoryBtn" class="text-btn" title="Clear History">Clear</button>
+          <button id="closeHistoryBtn" class="icon-btn" title="Close Panel">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="history-list" id="historyList">
+        <div class="empty-history">
+          <i data-lucide="history" class="empty-icon"></i>
+          <p>No calculations yet</p>
+          <span>Your calculations will appear here</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
